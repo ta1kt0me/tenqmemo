@@ -5,7 +5,6 @@
     %thead
       %tr
         %th Body
-        %th User
         %th
         %th
         %th
@@ -14,7 +13,6 @@
       - @notes.each do |note|
         %tr
           %td= note.body
-          %td= note.user
           %td= link_to 'Show', note
           %td= link_to 'Edit', edit_note_path(note)
           %td= link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
