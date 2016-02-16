@@ -2,7 +2,7 @@
 
 %p
   %b Body:
-  = @note.body
+  = md2html emojify(@note.body)
 
 - if logged_in?
   = link_to 'Edit', edit_note_path(@note)
