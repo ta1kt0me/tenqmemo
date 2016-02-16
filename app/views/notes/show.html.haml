@@ -3,10 +3,8 @@
 %p
   %b Body:
   = @note.body
-%p
-  %b User:
-  = @note.user
 
-= link_to 'Edit', edit_note_path(@note)
-\|
+- if logged_in?
+  = link_to 'Edit', edit_note_path(@note)
+  \|
 = link_to 'Back', notes_path
