@@ -4,7 +4,7 @@
   %table
     %thead
       %tr
-        %th Body
+        %th title
         %th
         %th
         %th
@@ -12,7 +12,7 @@
     %tbody
       - @notes.each do |note|
         %tr
-          %td= note.body
+          %td= note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S')
           %td= link_to 'Show', note
           %td= link_to 'Edit', edit_note_path(note)
           %td= link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
