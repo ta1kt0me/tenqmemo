@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notes
   resources :sessions, only: [:new, :create]
   resources :users, only: [:new, :create]
 
@@ -6,5 +7,5 @@ Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
-  root 'welcome#index'
+  root 'notes#index'
 end
