@@ -6,9 +6,14 @@
       - if logged_in?
         .row
           .col-md-12
+            .input-group
+              %span.input-group-btn
+                = link_to 'New Note', new_note_path, class: 'btn btn-primary'
             .list-group
               - @notes.each do |note|
                 .list-group-item
+                  .row-action-primary
+                    %i.material-icons label
                   .row-content
                     %h2.list-group-item-heading
                       = link_to note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S'), note
@@ -17,6 +22,3 @@
                       |
                       = link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
                 .list-group-separator
-        %br
-
-        = link_to 'New Note', new_note_path
