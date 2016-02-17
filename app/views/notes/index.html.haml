@@ -1,22 +1,23 @@
-%h1 Listing notes
+%main
+  %h1 Listing notes
 
-- if logged_in?
-  %table
-    %thead
-      %tr
-        %th title
-        %th
-        %th
-        %th
-
-    %tbody
-      - @notes.each do |note|
+  - if logged_in?
+    %table
+      %thead
         %tr
-          %td= note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S')
-          %td= link_to 'Show', note
-          %td= link_to 'Edit', edit_note_path(note)
-          %td= link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %th title
+          %th
+          %th
+          %th
 
-  %br
+      %tbody
+        - @notes.each do |note|
+          %tr
+            %td= note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S')
+            %td= link_to 'Show', note
+            %td= link_to 'Edit', edit_note_path(note)
+            %td= link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-  = link_to 'New Note', new_note_path
+    %br
+
+    = link_to 'New Note', new_note_path
