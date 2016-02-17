@@ -1,0 +1,12 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      = button_tag class: "navbar-toggle collapsed", aria: { expanded: false }, data: { target: '#js-navbar-collapsed', toggle: 'collapsed' } do
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    .collapse.navbar-collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to '新規投稿', '#'
+        %li= link_to 'ログイン', '#'

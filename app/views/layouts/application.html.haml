@@ -2,6 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
     %title Tenqmemo
     = csrf_meta_tags
     = action_cable_meta_tag
@@ -15,4 +16,6 @@
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.8/js/ripples.js', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
   %body
+    = render 'layouts/header'
     = yield
+    = render 'layouts/footer'
