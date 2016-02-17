@@ -1,9 +1,18 @@
-%p#notice= notice
+.row
+  .col-md-12
+    .alert.alert-dismissible.alert-infol
+      = button_tag 'x', class: 'close', data: {dismiss: 'alert'}
+      = notice
+    .jumbotron
+      .page-header
+        %h1= @note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S')
+      .row
+        .col-md-12
+          %p= md2html emojify(@note.body)
 
-%h1= @note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S')
-%p= md2html emojify(@note.body)
-
-- if logged_in?
-  = link_to 'Edit', edit_note_path(@note)
-  \|
-= link_to 'Back', notes_path
+      - if logged_in?
+        .row
+          .col-md-12
+            = link_to 'Edit', edit_note_path(@note)
+            |
+            = link_to 'Back', notes_path
