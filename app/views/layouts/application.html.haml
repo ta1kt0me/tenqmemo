@@ -12,10 +12,11 @@
     = stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.8/css/bootstrap-material-design.css', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.8/css/ripples.css', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.8/js/material.js', 'data-turbolinks-track' => true
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.8/js/ripples.js', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
   %body
-    = render 'layouts/header'
-    = yield
-    = render 'layouts/footer'
+    .container
+      = render 'layouts/header'
+      = yield
+      = render 'layouts/footer'
