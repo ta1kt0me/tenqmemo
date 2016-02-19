@@ -11,6 +11,8 @@
     %fieldset
       .form-group.is-empty
         = f.label :body, class: 'control-label'
-        = f.text_area :body, rows: 35, class: 'form-control'
+        = f.text_area :body, rows: 35, class: 'form-control', data: { behavior: 'writer' }
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
+    %fieldset
+      .preview
