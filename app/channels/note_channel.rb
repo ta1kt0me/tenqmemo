@@ -9,6 +9,6 @@ class NoteChannel < ApplicationCable::Channel
   end
 
   def preview(data)
-    PreviewNoteJob.perform_now(data['note'])
+    PreviewNoteJob.perform_later(data['note'])
   end
 end
