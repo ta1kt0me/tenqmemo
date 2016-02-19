@@ -1,16 +1,23 @@
 .well.bs-component
-  = form_for @note, class: 'form-horizontal' do |f|
-    - if @note.errors.any?
-      .alert.alert-dismissible.alert-danger
-        = button_tag 'x', class: 'close', data: {dismiss: 'alert'}
-        = "#{pluralize(@note.errors.count, "error")} prohibited this note from being saved:"
-        %ul
-          - @note.errors.full_messages.each do |msg|
-            %li= msg
+  .row
+    .col-md-6
+      = form_for @note, class: 'form-horizontal' do |f|
+        - if @note.errors.any?
+          .alert.alert-dismissible.alert-danger
+            = button_tag 'x', class: 'close', data: {dismiss: 'alert'}
+            = "#{pluralize(@note.errors.count, "error")} prohibited this note from being saved:"
+            %ul
+              - @note.errors.full_messages.each do |msg|
+                %li= msg
 
-    %fieldset
-      .form-group.is-empty
-        = f.label :body, class: 'control-label'
-        = f.text_area :body, rows: 35, class: 'form-control'
+        .form-group.is-empty
+          = f.label :body, class: 'control-label'
+          = f.text_area :body, rows: 35, class: 'form-control', data: { behavior: 'writer' }
+          %span.material-input
+        .form-group
+          = f.submit 'Save', class: 'btn btn-primary'
+    .col-md-6
       .form-group
-        = f.submit 'Save', class: 'btn btn-primary'
+        %label.control-label
+          Preview
+        .preview
