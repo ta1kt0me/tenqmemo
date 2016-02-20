@@ -2,11 +2,12 @@
   .col-md-12
     .page-header
       %h1 Editing note
-      .row
-        .col-md-12
-          = render 'form'
-      .row
-        .col-md-12
-          = link_to 'Show', @note
-          \|
-          = link_to 'Back', notes_path
+    .row.well
+      .col-md-12
+        = render 'form'
+
+    .row
+      .col-md-12
+        = link_to 'Show', @note
+        \|
+        = link_to 'Back', notes_path
