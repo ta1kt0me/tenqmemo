@@ -13,5 +13,4 @@ App.note = App.cable.subscriptions.create "NoteChannel",
     @perform 'preview', note: note
 
   $(document).on 'keypress', '[data-behavior~=writer]', (event) ->
-    if event.keyCode is 13
-      App.note.preview event.target.value
+    App.note.preview event.target.value if event.type is 'keypress'
