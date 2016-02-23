@@ -1,0 +1,14 @@
+{
+  "name": "tenqmemo",
+  "version": "1.0.0",
+  "description": "markdown note",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ta1kt0me/tenqmemo.git"
+  },
+  "author": "ta1kt0me",
+  "license": "MIT"
+}
