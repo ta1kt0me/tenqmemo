@@ -7,10 +7,7 @@ App.note = App.cable.subscriptions.create "NoteChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('.preview').html(data['note'])
+    window.Markdown.refs.preview.update(data['note'])
 
   preview: (note) ->
     @perform 'preview', note: note
-
-  $(document).on 'keypress', '[data-behavior~=writer]', (event) ->
-    App.note.preview event.target.value if event.type is 'keypress'

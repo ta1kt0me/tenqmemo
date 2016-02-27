@@ -1,5 +1,5 @@
 .row
-  .col-md-6
+  .col-md-12
     = form_for @note, html: { class: 'bs-component' } do |f|
       - if @note.errors.any?
         .alert.alert-dismissible.alert-danger
@@ -9,14 +9,9 @@
             - @note.errors.full_messages.each do |msg|
               %li= msg
 
-      .form-group.is-empty
-        = f.label :body, class: 'control-label'
-        = f.text_area :body, rows: 35, class: 'form-control', data: { behavior: 'writer' }
-        %span.material-input
+      .row
+        #target
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
-  .col-md-6
-    .form-group
-      %label.control-label
-        Preview
-      .preview
+:javascript
+  window.Markdown = (new window.Editor.Editor(document.getElementById('target'), #{@note.to_json})).render()
