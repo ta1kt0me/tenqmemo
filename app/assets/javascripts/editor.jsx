@@ -6,7 +6,7 @@ var NoteTextArea = React.createClass({
     App.note.preview(document.getElementById('note_body').value);
   },
 
-  handleKeyDown: function(event){
+  handleChange: function(event) {
     App.note.preview(event.target.value);
   },
 
@@ -15,7 +15,7 @@ var NoteTextArea = React.createClass({
       <div className="col-md-6">
         <div className="form-group is-empty">
           <label className="control-label">Body</label>
-          <textarea rows="35" className="form-control" data-behavior="writer" name="note[body]" id="note_body" onKeyDown={this.handleKeyDown} defaultValue={this.props.body}></textarea>
+          <textarea rows="35" className="form-control" data-behavior="writer" name="note[body]" id="note_body" onChange={this.handleChange} defaultValue={this.props.body}></textarea>
           <span className="material-input" />
         </div>
       </div>
