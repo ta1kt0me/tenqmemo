@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/stub_any_instance'
 require 'support/login_helper'
+require 'minitest/rails/capybara'
 
 module ActiveSupport
   class TestCase
