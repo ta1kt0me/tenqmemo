@@ -4,6 +4,7 @@ require 'rails/test_help'
 require 'minitest/stub_any_instance'
 require 'support/login_helper'
 require 'minitest/rails/capybara'
+require "capybara/poltergeist"
 
 module ActiveSupport
   class TestCase

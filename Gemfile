@@ -50,6 +50,7 @@ group :test do
   gem 'minitest-stub_any_instance'
   gem 'minitest-rails', '~> 3.0.0.rc1'
   gem 'minitest-rails-capybara', '~> 3.0.0.rc1'
+  gem 'poltergeist'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
