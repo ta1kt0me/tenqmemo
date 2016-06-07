@@ -1,59 +1,85 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var NoteTextArea = React.createClass({
-  componentDidMount: function(event){
+class NoteTextArea extends React.Component {
+  static get propTypes() {
+    return {
+      body: React.PropTypes.string,
+    };
+  }
+
+  componentDidMount() {
     App.note.preview(document.getElementById('note_body').value);
-  },
+  }
 
-  handleChange: function(event) {
+  handleChange(event) {
     App.note.preview(event.target.value);
-  },
+  }
 
-  render: function(){
+  render() {
     return (
       <div className="col-md-6">
         <div className="form-group is-empty">
           <label className="control-label">Body</label>
-          <textarea rows="35" className="form-control" data-behavior="writer" name="note[body]" id="note_body" onChange={this.handleChange} defaultValue={this.props.body}></textarea>
+          <textarea
+            rows="35"
+            className="form-control"
+            data-behavior="writer"
+            name="note[body]"
+            id="note_body"
+            onChange={this.handleChange}
+            defaultValue={this.props.body}
+          ></textarea>
           <span className="material-input" />
         </div>
       </div>
-    )
+    );
   }
-});
+}
 
-var Preview = React.createClass({
-  getInitialState: function(){
-    return { text: this.props.body };
-  },
+class Preview extends React.Component {
+  static get propTypes() {
+    return {
+      body: React.PropTypes.string,
+    };
+  }
 
-  update: function(val){
-    this.setState({text: val})
-  },
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: this.props.body,
+    };
+  }
 
-  render: function(){
+  update(val) {
+    this.setState({ text: val });
+  }
+
+  render() {
     return (
       <div className="col-md-6">
         <div className="form-group">
           <label className="control-label">Preview</label>
-          <div className="preview" dangerouslySetInnerHTML={{__html: this.state.text}}></div>
+          <div
+            className="preview"
+            dangerouslySetInnerHTML={{ __html: this.state.text }}
+          ></div>
         </div>
       </div>
-    )
+    );
   }
-});
+}
 
-var Markdown = React.createClass({
-	render: function(){
+class Markdown extends React.Component {
+  render() {
     return (
       <div className="row">
-        <NoteTextArea {...this.props}/>
-        <Preview ref="preview" {...this.props} />
+        <NoteTextArea { ...this.props } />
+        <Preview ref="preview" { ...this.props } />
       </div>
-    )
+    );
   }
-})
+}
 
 export class Editor {
 	constructor (element, props = {}) {
