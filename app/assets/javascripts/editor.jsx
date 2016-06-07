@@ -44,17 +44,6 @@ class Preview extends React.Component {
     };
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: this.props.body,
-    };
-  }
-
-  update(val) {
-    this.setState({ text: val });
-  }
-
   render() {
     return (
       <div className="col-md-6">
@@ -62,7 +51,7 @@ class Preview extends React.Component {
           <label className="control-label">Preview</label>
           <div
             className="preview"
-            dangerouslySetInnerHTML={{ __html: this.state.text }}
+            dangerouslySetInnerHTML={{ __html: this.props.body }}
           ></div>
         </div>
       </div>
@@ -71,11 +60,28 @@ class Preview extends React.Component {
 }
 
 class Markdown extends React.Component {
+  static get propTypes() {
+    return {
+      body: React.PropTypes.string,
+    };
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: this.props.body,
+    }
+  }
+
+  update(val) {
+    this.setState({ body: val })
+  }
+
   render() {
     return (
       <div className="row">
-        <NoteTextArea { ...this.props } />
-        <Preview ref="preview" { ...this.props } />
+        <NoteTextArea body={ this.props.body } />
+        <Preview body={ this.state.body } />
       </div>
     );
   }
