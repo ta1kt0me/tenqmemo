@@ -15,4 +15,4 @@
 //= require turbolinks
 //= require_tree .
 
-window.Editor = require('./editor.jsx');
+window.Editor = require('./editor.jsx').Editor;

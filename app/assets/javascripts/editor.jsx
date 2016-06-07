@@ -81,21 +81,9 @@ class Markdown extends React.Component {
   }
 }
 
-export class Editor {
-	constructor (element, props = {}) {
-		this.element = element
-		this._props = props
-	}
-	get props () {
-		return this._props
-	}
-	set props (props) {
-		Object.assign(this._props, props)
-		return this.render()
-	}
-	render () {
-		return ReactDOM.render(
-			<Markdown {...this.props} />, this.element
-		)
-	}
-}
+export const Editor = function Editor(body) {
+  return ReactDOM.render(
+    <Markdown body={body} />,
+    document.getElementById('target')
+  );
+};

@@ -14,4 +14,4 @@
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
 :javascript
-  window.Markdown = (new window.Editor.Editor(document.getElementById('target'), #{@note.to_json})).render()
+  window.Markdown = Editor(#{@note.body});
