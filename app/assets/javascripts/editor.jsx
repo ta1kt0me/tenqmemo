@@ -37,27 +37,21 @@ class NoteTextArea extends React.Component {
   }
 }
 
-class Preview extends React.Component {
-  static get propTypes() {
-    return {
-      body: React.PropTypes.string,
-    };
-  }
+const Preview = ({ body }) => (
+  <div className="col-md-6">
+    <div className="form-group">
+      <label className="control-label">Preview</label>
+      <div
+        className="preview"
+        dangerouslySetInnerHTML={{ __html: body }}
+      ></div>
+    </div>
+  </div>
+);
 
-  render() {
-    return (
-      <div className="col-md-6">
-        <div className="form-group">
-          <label className="control-label">Preview</label>
-          <div
-            className="preview"
-            dangerouslySetInnerHTML={{ __html: this.props.body }}
-          ></div>
-        </div>
-      </div>
-    );
-  }
-}
+Preview.propTypes = {
+  body: React.PropTypes.string,
+};
 
 class Markdown extends React.Component {
   static get propTypes() {
@@ -70,18 +64,18 @@ class Markdown extends React.Component {
     super(props);
     this.state = {
       body: this.props.body,
-    }
+    };
   }
 
   update(val) {
-    this.setState({ body: val })
+    this.setState({ body: val });
   }
 
   render() {
     return (
       <div className="row">
-        <NoteTextArea body={ this.props.body } />
-        <Preview body={ this.state.body } />
+        <NoteTextArea body={this.props.body} />
+        <Preview body={this.state.body} />
       </div>
     );
   }
