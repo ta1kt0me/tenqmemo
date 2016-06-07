@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CanCreateNoteTest < Capybara::Rails::TestCase
   def setup
-    Capybara.current_driver = :poltergeist
+    Capybara.current_driver = Capybara.javascript_driver
     super
   end
 
@@ -18,6 +18,10 @@ class CanCreateNoteTest < Capybara::Rails::TestCase
       visit new_note_path
 
       fill_in 'note_body', with: body
+
+      within '.preview' do
+        assert_content page, body
+      end
 
       click_button 'Save'
 

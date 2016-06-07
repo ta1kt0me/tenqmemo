@@ -4,7 +4,7 @@ require 'rails/test_help'
 require 'minitest/stub_any_instance'
 require 'support/login_helper'
 require 'minitest/rails/capybara'
-require "capybara/poltergeist"
+require 'capybara/poltergeist'
 
 module ActiveSupport
   class TestCase
@@ -13,5 +13,7 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    Capybara.javascript_driver = :poltergeist
+    Capybara.server = :puma
   end
 end
