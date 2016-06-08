@@ -16,3 +16,4 @@
 //= require_tree .
 
 window.Editor = require('./editor.jsx').Editor;
+window.Preview = require('./preview.jsx').Preview;

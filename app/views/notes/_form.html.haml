@@ -10,8 +10,10 @@
               %li= msg
 
       .row
-        #target
+        #editor
+        #preview
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
 :javascript
-  window.Markdown = Editor(#{@note.body});
+  Editor(#{@note.body});
+  window.Markdown = Preview(#{@note.body});
