@@ -1,23 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const View = ({ body }) => (
-  <div className="col-md-6">
-    <div className="form-group">
-      <label className="control-label">Preview</label>
-      <div
-        className="preview"
-        dangerouslySetInnerHTML={{ __html: body }}
-      ></div>
-    </div>
-  </div>
-);
-
-View.propTypes = {
-  body: React.PropTypes.string,
-};
-
-class Markdown extends React.Component {
+class Renderer extends React.Component {
   static get propTypes() {
     return {
       body: React.PropTypes.string,
@@ -37,16 +21,17 @@ class Markdown extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <View body={this.state.body} />
-      </div>
+      <div
+        className="preview"
+        dangerouslySetInnerHTML={{ __html: this.state.body }}
+      ></div>
     );
   }
 }
 
-export const Preview = function Preview(body) {
+export const Preview = (body) => {
   return ReactDOM.render(
-    <Markdown body={body} />,
+    <Renderer body={body} />,
     document.getElementById('preview')
   );
 };

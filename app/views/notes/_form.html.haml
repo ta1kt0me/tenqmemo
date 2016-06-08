@@ -10,8 +10,15 @@
               %li= msg
 
       .row
-        #editor
-        #preview
+        .col-md-6
+          .form-group.is-empty
+            %label.control-label Body
+            #editor
+            %span.material-input
+        .col-md-6
+          .form-group
+            %label.control-label Preview
+            #preview
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
 :javascript
