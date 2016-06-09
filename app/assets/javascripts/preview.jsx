@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Renderer extends React.Component {
+export class Renderer extends React.Component {
   static get propTypes() {
     return {
       body: React.PropTypes.string,
