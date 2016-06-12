@@ -31,9 +31,9 @@ export class Textarea extends React.Component {
   }
 }
 
-export const Editor = (body) => (
-  ReactDOM.render(
+export const Editor = (body) => {
+  return ReactDOM.render(
     <Textarea body={body} />,
     document.getElementById('editor')
-  )
-);
+  );
+};
