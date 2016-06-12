@@ -22,5 +22,5 @@
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
 :javascript
-  Editor(#{@note.body});
-  window.Markdown = Preview(#{@note.body});
+  Editor(#{@note.to_json});
+  window.Markdown = Preview(#{@note.to_json});
