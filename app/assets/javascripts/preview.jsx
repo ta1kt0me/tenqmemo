@@ -29,9 +29,5 @@ export class Renderer extends React.Component {
   }
 }
 
-export const Preview = (post) => {
-  return ReactDOM.render(
-    <Renderer body={post.body} />,
-    document.getElementById('preview')
-  );
-};
+export const Preview = (post) =>
+  ReactDOM.render(<Renderer body={post.body} />, document.getElementById('preview'));
