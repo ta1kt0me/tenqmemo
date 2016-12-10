@@ -13,9 +13,9 @@ describe('Editor', () => {
   it('has Editor component', () => {
     sinon.stub(Textarea.prototype, 'componentDidMount').returns(true);
     sinon.stub(Textarea.prototype, 'handleChange').returns(true);
-    const str = 'foo';
+    const obj = { body: 'foo' };
     document = jsdom('<!doctype html><html><body><div id="editor"></div></body></html>');
-    Editor(str);
-    assert(document.querySelector('#editor textarea').innerHTML === str);
+    Editor(obj);
+    assert(document.querySelector('#editor textarea').innerHTML === obj.body);
   });
 });

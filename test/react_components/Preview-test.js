@@ -11,9 +11,9 @@ describe('Renderer', () => {
 
 describe('Preview', () => {
   it('has Preview component', () => {
-    const str = 'foo';
+    const obj = {body: 'foo'};
     document = jsdom('<!doctype html><html><body><div id="preview"></div></body></html>');
-    Preview(str);
-    assert(document.querySelector('.preview').innerHTML === str);
+    Preview(obj);
+    assert(document.querySelector('.preview').innerHTML === obj.body);
   });
 });
