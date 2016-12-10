@@ -20,8 +20,8 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "browserify-incremental": "^3.0.1",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
     "reactify": "^1.1.1",
     "bootstrap-material-design": "^0.5.10"
   },
