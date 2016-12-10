@@ -1,0 +1,15 @@
+machine:
+  environment:
+   NODE_ENV: development
+  node:
+    version: 6.9
+  ruby:
+    version: 2.3.1
+  post:
+    - npm install -g npm@3.x
+dependencies:
+  pre:
+    - rm -rf ~/tenqmemo/node_modules
+general:
+  artifacts:
+    - "log/test.log"
