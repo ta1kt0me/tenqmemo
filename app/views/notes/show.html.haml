@@ -1,7 +1,7 @@
 .row
   .col-md-12
     .page-header
-      %h1= @note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S')
+      %h1= @note.created_at.in_time_zone('Tokyo').strftime('%D %R')
     .row.well
       .col-md-12
         = render 'note', note: @note.body

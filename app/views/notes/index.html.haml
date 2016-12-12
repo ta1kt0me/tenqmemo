@@ -15,7 +15,7 @@
                 %i.material-icons label
               .row-content
                 %h2.list-group-item-heading
-                  = link_to note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S'), note
+                  = link_to note.created_at.in_time_zone('Tokyo').strftime('%D %R'), note
                   .pull-right
                     - if logged_in?
                       = link_to edit_note_path(note) do
