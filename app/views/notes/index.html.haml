@@ -25,3 +25,5 @@
                 .list-group-item-text
                   = truncate note.body, length: 80
             .list-group-separator
+.text-center
+  = paginate @notes

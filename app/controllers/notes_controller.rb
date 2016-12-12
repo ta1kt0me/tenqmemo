@@ -4,8 +4,8 @@ class NotesController < ApplicationController
 
   # GET /notes
   # GET /notes.json
-  def index
-    @notes = Note.order(created_at: :desc)
+  def index(page: nil)
+    @notes = Note.order(created_at: :desc).page params[:page]
   end
 
   # GET /notes/1
