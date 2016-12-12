@@ -22,3 +22,5 @@
                     |
                     = link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
             .list-group-separator
+    .text-center
+      = paginate @notes
