@@ -29,6 +29,7 @@ gem 'redis', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'hamlit-rails'
+gem 'kaminari'
 gem 'redcarpet'
 gem 'gemoji'
 # Use Capistrano for deployment
