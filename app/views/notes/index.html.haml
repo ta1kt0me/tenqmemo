@@ -11,14 +11,17 @@
         .list-group
           - @notes.each do |note|
             .list-group-item
-              .row-action-primary
+              .row-action-primary.align-top
                 %i.material-icons label
               .row-content
                 %h2.list-group-item-heading
                   = link_to note.created_at.in_time_zone('Tokyo').strftime('%D %H:%M:%S'), note
-                - if logged_in?
-                  %p
-                    = link_to 'Edit', edit_note_path(note)
-                    |
-                    = link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                  .pull-right
+                    - if logged_in?
+                      = link_to edit_note_path(note) do
+                        %i.material-icons mode_edit
+                      = link_to note, method: :delete, data: { confirm: 'Are you sure?' } do
+                        %i.material-icons delete
+                .list-group-item-text
+                  = truncate note.body, length: 80
             .list-group-separator
