@@ -10,6 +10,9 @@
               %li= msg
 
       .row
+        .col-xs-12
+          #tag
+      .row
         .col-md-6
           .form-group.is-empty
             %label.control-label Body
@@ -22,5 +25,6 @@
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
 :javascript
+  Tag(#{[{ id: 1, text: 'abc' }].to_json});
   Editor(#{@note.to_json});
   window.Markdown = Preview(#{@note.to_json});
