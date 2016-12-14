@@ -28,7 +28,6 @@ export class Renderer extends React.Component {
   handleAddition(tag) {
     const tags = this.state.tags;
     tags.push({
-      id: tags.length + 1,
       text: tag,
     });
     this.setState({ tags });
@@ -48,6 +47,9 @@ export class Renderer extends React.Component {
             remove: 'tag-remove',
           }}
         />
+        {this.state.tags.map((tag) => {
+          return <input name="note[tag_names][]" type="hidden" value={tag.text} />;
+        })}
       </div>
     );
   }
