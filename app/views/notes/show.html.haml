@@ -4,6 +4,9 @@
       %h1= @note.created_at.in_time_zone('Tokyo').strftime('%D %R')
     .row.well
       .col-md-12
+        %p
+          - @note.tags.each do |tag|
+            %span.label.label-default= tag.name
         = render 'note', note: @note.body
 
     - if logged_in?

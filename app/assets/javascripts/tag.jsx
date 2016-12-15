@@ -43,7 +43,7 @@ export class Renderer extends React.Component {
           handleDelete={this.handleDelete}
           classNames={{
             tagInput: 'tag-input',
-            tag: 'label tag-label',
+            tag: 'label tag-label normal-font',
             remove: 'tag-remove',
           }}
         />
