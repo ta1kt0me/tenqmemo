@@ -47,8 +47,8 @@ export class Renderer extends React.Component {
             remove: 'tag-remove',
           }}
         />
-        {this.state.tags.map((tag) => {
-          return <input name="note[tag_names][]" type="hidden" value={tag.text} />;
+        {this.state.tags.map((tag, index) => {
+          return <input key={'new_tag_'+index} name="note[tag_names][]" type="hidden" value={tag.text} />;
         })}
       </div>
     );
