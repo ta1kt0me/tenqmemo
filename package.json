@@ -23,7 +23,8 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "reactify": "^1.1.1",
-    "bootstrap-material-design": "^0.5.10"
+    "bootstrap-material-design": "^0.5.10",
+    "react-tag-input": "^4.6.1"
   },
   "devDependencies": {
     "babel-preset-power-assert": "^1.0.0",

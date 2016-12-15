@@ -22,8 +22,11 @@
                         %i.material-icons mode_edit
                       = link_to note, method: :delete, data: { confirm: 'Are you sure?' } do
                         %i.material-icons delete
-                .list-group-item-text
+                %p.list-group-item-text
                   = truncate note.body, length: 80
+                %p.tags
+                  - note.tags.each do |tag|
+                    %span.label.label-default.normal-font= tag.name
             .list-group-separator
 .text-center
   = paginate @notes

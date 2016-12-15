@@ -16,7 +16,8 @@ class CanCreateNoteTest < Capybara::Rails::TestCase
 
     sign_in_user do
       visit new_note_path
-
+      find('.ReactTags__tagInputField').set('mytag')
+      find('.ReactTags__tagInputField').native.send_keys(:return)
       fill_in 'note_body', with: body
 
       within '.preview' do
@@ -26,6 +27,7 @@ class CanCreateNoteTest < Capybara::Rails::TestCase
       click_button 'Save'
 
       assert_content page, body
+      assert_content page, 'mytag'
     end
   end
 end

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :notes
+
   validates_presence_of :username, :email, :password
   validates_uniqueness_of :username, :email
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }

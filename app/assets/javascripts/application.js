@@ -20,3 +20,4 @@
 
 window.Editor = require('./editor.jsx').Editor;
 window.Preview = require('./preview.jsx').Preview;
+window.Tag = require('./tag.jsx').Tag;
