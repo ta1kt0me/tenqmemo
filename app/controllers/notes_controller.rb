@@ -72,7 +72,7 @@ class NotesController < ApplicationController
     end
 
     def set_suggestions
-      @suggestions = current_user.tags.order(:name).pluck :name
+      @suggestions = current_user.tags.order(:name).distinct.pluck :name
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
