@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :notes
+  has_many :tags, through: :notes
 
   validates_presence_of :username, :email, :password
   validates_uniqueness_of :username, :email

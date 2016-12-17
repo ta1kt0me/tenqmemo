@@ -6,6 +6,7 @@ export class Renderer extends React.Component {
   static get propTypes() {
     return {
       tags: React.PropTypes.array,
+      suggestions: React.PropTypes.array,
     };
   }
 
@@ -13,7 +14,7 @@ export class Renderer extends React.Component {
     super(props);
     this.state = {
       tags: this.props.tags,
-      suggestions: ['foo', 'bar', 'baz', 'dooo'],
+      suggestions: this.props.suggestions,
     };
     this.handleAddition = this.handleAddition.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -27,9 +28,9 @@ export class Renderer extends React.Component {
 
   handleAddition(tag) {
     const tags = this.state.tags;
-    tags.push({
-      text: tag,
-    });
+    if (tags.map(function(x){ return x.text }).indexOf(tag) < 0) {
+      tags.push({ text: tag });
+    }
     this.setState({ tags });
   }
 
@@ -57,5 +58,5 @@ export class Renderer extends React.Component {
   }
 }
 
-export const Tag = (tags) =>
-  ReactDOM.render(<Renderer tags={tags} />, document.getElementById('tag'));
+export const Tag = (tags, suggestions) =>
+  ReactDOM.render(<Renderer tags={tags} suggestions={suggestions} />, document.getElementById('tag'));

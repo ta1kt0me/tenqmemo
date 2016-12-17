@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :logged_in?, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_suggestions, only: [:new, :edit]
 
   # GET /notes
   # GET /notes.json
@@ -32,6 +33,7 @@ class NotesController < ApplicationController
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
+        set_suggestions
         format.html { render :new }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
@@ -46,6 +48,7 @@ class NotesController < ApplicationController
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { render :show, status: :ok, location: @note }
       else
+        set_suggestions
         format.html { render :edit }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
@@ -66,6 +69,10 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
+    end
+
+    def set_suggestions
+      @suggestions = current_user.tags.order(:name).pluck :name
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
