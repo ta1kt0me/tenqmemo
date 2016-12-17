@@ -38,11 +38,13 @@ export class Renderer extends React.Component {
       <div>
         <ReactTags
           tags={this.state.tags}
-          suggestion={this.state.suggestions}
+          suggestions={this.state.suggestions}
           handleAddition={this.handleAddition}
           handleDelete={this.handleDelete}
           classNames={{
-            tagInput: 'tag-input',
+            suggestions: 'suggestions',
+            tagInputField: 'tag-input-field form-control',
+            tagInput: 'tag-input form-group',
             tag: 'label tag-label normal-font',
             remove: 'tag-remove',
           }}
