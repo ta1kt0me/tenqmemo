@@ -1,8 +1,8 @@
 class PreviewNoteJob < ApplicationJob
   queue_as :default
 
-  def perform(note)
-    ActionCable.server.broadcast 'note_channel', note: render_note(note)
+  def perform(note, current_user)
+    ActionCable.server.broadcast "note_channel_user_#{current_user.id}", note: render_note(note)
   end
 
   private
