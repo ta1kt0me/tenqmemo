@@ -6,7 +6,7 @@ machine:
   node:
     version: 6.9
   ruby:
-    version: 2.3.3
+    version: 2.4.0
   post:
     - npm install -g npm@3.x
 dependencies:
