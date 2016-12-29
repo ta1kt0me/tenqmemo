@@ -6,7 +6,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index(page: nil)
-    @notes = Note.includes(:tags).order(created_at: :desc).page params[:page]
+    @notes = Note.includes(:tags).order(created_at: :desc).page page
   end
 
   # GET /notes/1
