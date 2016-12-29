@@ -18,6 +18,10 @@
 //= require bootstrap-material-design/dist/js/ripples
 //= require_tree .
 
-window.Editor = require('./editor.jsx').Editor;
-window.Preview = require('./preview.jsx').Preview;
-window.Tag = require('./tag.jsx').Tag;
+import { Editor } from './editor.js';
+import { Preview } from './preview.js';
+import { Tag } from './tag.js';
+
+window.Editor = Editor;
+window.Preview = Preview;
+window.Tag = Tag;
