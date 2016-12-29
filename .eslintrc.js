@@ -8,7 +8,8 @@ module.exports = {
     App: true
   },
   rules : {
-    'react/no-multi-comp': 0
+    'react/no-multi-comp': 0,
+    'max-len': [0, 250],
   },
   plugins: [
     'react'
