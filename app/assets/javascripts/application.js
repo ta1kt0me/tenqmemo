@@ -17,11 +17,4 @@
 //= require bootstrap-material-design/dist/js/material
 //= require bootstrap-material-design/dist/js/ripples
 //= require_tree .
-
-import { Editor } from './editor.js';
-import { Preview } from './preview.js';
-import { Tag } from './tag.js';
-
-window.Editor = Editor;
-window.Preview = Preview;
-window.Tag = Tag;
+require('./bundle.js');
