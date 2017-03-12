@@ -1,6 +1,6 @@
 const assert = require('assert');
 import { shallow } from 'enzyme';
-import { Textarea, Editor } from '../../app/assets/javascripts/editor';
+import { Textarea, Editor } from '../../app/frontend/javascripts/components/editor.js';
 
 describe('Textarea', () => {
   it('has textarea', () => {

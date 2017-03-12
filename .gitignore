@@ -49,3 +49,5 @@ Session.vim
 *~
 
 .env
+/app/assets/javascripts/bundle.js
+/app/assets/stylesheets/bundle.scss
