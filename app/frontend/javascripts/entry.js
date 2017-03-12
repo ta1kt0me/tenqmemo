@@ -9,6 +9,9 @@ window.Editor = Editor;
 window.Preview = Preview;
 window.Tag = Tag;
 
+import './components/material';
+import './components/gtm';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 import 'bootstrap-material-design/dist/css/ripples.css';
