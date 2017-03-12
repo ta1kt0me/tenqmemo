@@ -8,3 +8,7 @@ import { Tag } from './components/tag';
 window.Editor = Editor;
 window.Preview = Preview;
 window.Tag = Tag;
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
+import 'bootstrap-material-design/dist/css/ripples.css';

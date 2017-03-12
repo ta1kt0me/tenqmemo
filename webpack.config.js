@@ -1,5 +1,6 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, 'app', 'frontend', 'javascripts'),
@@ -8,6 +9,11 @@ module.exports = {
     path: path.join(__dirname, 'app', 'assets', 'javascripts'),
     filename: 'bundle.js',
   },
+  plugins: [
+    new ExtractTextPlugin(
+     '../stylesheets/bundle.scss'
+    ),
+  ],
   module: {
     rules: [
       {
@@ -17,6 +23,24 @@ module.exports = {
           loader: 'babel-loader',
           options: { presets: ['es2015', 'react'] },
         }],
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        }),
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader',
+        }),
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader',
       },
     ],
   },
