@@ -6,7 +6,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/react_components"
+    "test": "mocha test/react_components",
+    "build": "webpack --progress --profile --colors"
   },
   "repository": {
     "type": "git",
