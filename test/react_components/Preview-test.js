@@ -1,6 +1,6 @@
 const assert = require('assert');
 import { shallow } from 'enzyme';
-import { Renderer, Preview } from '../../app/assets/javascripts/preview'
+import { Renderer, Preview } from '../../app/frontend/javascripts/components/preview.js'
 
 describe('Renderer', () => {
   it('has preview class', () => {
