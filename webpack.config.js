@@ -36,7 +36,7 @@ module.exports = {
           fallback: 'style-loader',
           use: [
             { loader: 'css-loader' },
-            { loader: 'sass-loader', options: { includePaths: ['app/frontend/stylesheets/ext/', 'node_modules/bootstrap-sass/assets/stylesheets/'] } },
+            { loader: 'sass-loader', options: { includePaths: ['node_modules', 'app/frontend/stylesheets/ext/'] } },
           ],
         }),
       },
