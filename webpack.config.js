@@ -34,7 +34,10 @@ module.exports = {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader!sass-loader',
+          use: [
+            { loader: 'css-loader' },
+            { loader: 'sass-loader', options: { includePaths: ['app/frontend/stylesheets/ext/', 'node_modules/bootstrap-sass/assets/stylesheets/'] } },
+          ],
         }),
       },
       {
