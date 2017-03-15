@@ -12,6 +12,6 @@ window.Tag = Tag;
 import './components/material';
 import './components/gtm';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
-import 'bootstrap-material-design/dist/css/ripples.css';
+import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+import 'bootstrap-material-design/sass/bootstrap-material-design.scss';
+import 'bootstrap-material-design/sass/ripples.scss';
