@@ -1,0 +1,30 @@
+.suggestions {
+  position: absolute;
+  z-index: 10000;
+  margin-top: -8px;
+}
+
+.suggestions ul {
+  list-style-type: none;
+  box-shadow: .05em .01em .5em rgba(0,0,0,.2);
+  background: $white;
+  width: 204px;
+  padding-left: 0;
+}
+
+.suggestions li {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.suggestions li mark {
+  text-decoration: underline;
+  background: none;
+  font-weight: 600;
+}
+
+.suggestions ul li.active {
+  background: $blue-grey-50;
+  cursor: pointer;
+}

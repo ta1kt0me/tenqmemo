@@ -1,0 +1,25 @@
+.tag-label {
+  margin-right: 5px;
+}
+
+.tag-remove {
+  margin-left: 5px;
+  color: $white;
+
+  &:hover {
+    color: $grey;
+    cursor: pointer;
+  }
+}
+
+.tag-input {
+  margin-top: 10px;
+}
+
+.normal-font {
+  font-weight: normal;
+}
+
+.tags {
+  margin-top: 10px;
+}
