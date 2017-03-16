@@ -26,7 +26,7 @@
                   = truncate note.body, length: 80
                 %p.tags
                   - note.tags.each do |tag|
-                    %span.label.label-default.normal-font= tag.name
+                    = link_to tag.name, notes_path(tag: tag.name), class: 'label label-default normal-font'
             .list-group-separator
 .text-center
   = paginate @notes

@@ -6,7 +6,7 @@
       .col-md-12
         %p
           - @note.tags.each do |tag|
-            %span.label.label-default= tag.name
+            = link_to tag.name, notes_path(tag: tag.name), class: 'label label-default normal-font'
         = render 'note', note: @note.body
 
     - if logged_in?
