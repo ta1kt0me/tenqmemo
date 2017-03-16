@@ -1,13 +1,15 @@
+@import 'bootstrap-material-design/sass/_colors.scss';
+
 .tag-label {
   margin-right: 5px;
 }
 
 .tag-remove {
   margin-left: 5px;
-  color: #fff;
+  color: $white;
 
   &:hover {
-    color: #777;
+    color: $grey;
   }
 }
 
