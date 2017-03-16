@@ -5,8 +5,10 @@ class NotesController < ApplicationController
 
   # GET /notes
   # GET /notes.json
-  def index(page: nil)
-    @notes = Note.includes(:tags).order(created_at: :desc).page page
+  def index
+    notes = Note.includes(:tags).order(created_at: :desc)
+    notes = notes.where(tags: { name: params[:tag] }) if params[:tag]
+    @notes = notes.page(params[:page])
   end
 
   # GET /notes/1

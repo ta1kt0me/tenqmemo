@@ -2,7 +2,7 @@ class Note < ApplicationRecord
   attr_accessor :tag_names
 
   belongs_to :user
-  has_many :note_tags
+  has_many :note_tags, dependent: :destroy
   has_many :tags, through: :note_tags
 
   validates :body, presence: true
