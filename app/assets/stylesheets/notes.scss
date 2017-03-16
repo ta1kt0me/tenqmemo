@@ -56,3 +56,14 @@
   background: #b7cfe0;
   cursor: pointer;
 }
+
+a {
+  &:link {
+    text-decoration: none;
+  }
+
+  &:hover, &:active {
+    text-decoration: none;
+    color: darken(#009688, 10%)
+  }
+}

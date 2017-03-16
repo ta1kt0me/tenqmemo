@@ -2,7 +2,7 @@
   .col-xs-12
     .page-header
       %h1
-        TENQMEMO
+        = link_to 'TENQMEMO', root_path, class: 'title'
         - if logged_in?
           %span
             = link_to 'New Note', new_note_path, class: 'btn btn-primary'
