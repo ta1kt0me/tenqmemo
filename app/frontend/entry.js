@@ -18,3 +18,4 @@ import 'bootstrap-material-design/sass/ripples.scss';
 
 import './stylesheets/common.scss';
 import './stylesheets/notes.scss';
+import './stylesheets/tags.scss';
