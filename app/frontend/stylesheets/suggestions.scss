@@ -1,3 +1,5 @@
+@import 'bootstrap-material-design/sass/_colors.scss';
+
 .suggestions {
   position: absolute;
   z-index: 10000;
@@ -7,7 +9,7 @@
 .suggestions ul {
   list-style-type: none;
   box-shadow: .05em .01em .5em rgba(0,0,0,.2);
-  background: white;
+  background: $white;
   width: 204px;
   padding-left: 0;
 }
@@ -25,6 +27,6 @@
 }
 
 .suggestions ul li.active {
-  background: #b7cfe0;
+  background: $blue-grey-50;
   cursor: pointer;
 }
