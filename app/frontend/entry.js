@@ -15,3 +15,5 @@ import './javascripts/components/gtm';
 import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import 'bootstrap-material-design/sass/bootstrap-material-design.scss';
 import 'bootstrap-material-design/sass/ripples.scss';
+
+import './stylesheets/common.scss';

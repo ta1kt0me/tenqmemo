@@ -1,3 +1,5 @@
+@import 'bootstrap-material-design/sass/_colors.scss';
+
 a {
   &:link {
     text-decoration: none;
@@ -5,6 +7,6 @@ a {
 
   &:hover, &:active {
     text-decoration: none;
-    color: darken(#009688, 10%)
+    color: darken($teal, 10%)
   }
 }
