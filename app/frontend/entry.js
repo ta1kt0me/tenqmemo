@@ -17,3 +17,4 @@ import 'bootstrap-material-design/sass/bootstrap-material-design.scss';
 import 'bootstrap-material-design/sass/ripples.scss';
 
 import './stylesheets/common.scss';
+import './stylesheets/notes.scss';
