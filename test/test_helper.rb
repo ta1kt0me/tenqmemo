@@ -14,6 +14,10 @@ module ActiveSupport
 
     # Add more helper methods to be used by all tests here...
     Capybara.javascript_driver = :poltergeist
+    Capybara.register_server :puma do |app, port, host|
+      require 'rack/handler/puma'
+      Rack::Handler::Puma.run(app, Host: host, Port: port, Threads: "0:4", Silent: true)
+    end
     Capybara.server = :puma
   end
 end
