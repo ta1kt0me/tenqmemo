@@ -1,29 +1,46 @@
-machine:
-  environment:
-   NODE_ENV: development
-   YARN_VERSION: 0.21.3
-   PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
-  node:
-    version: '6.10'
-  ruby:
-    version: 2.4.0
-  post:
-    - npm install -g npm@3.x
-dependencies:
-  pre:
-    - rm -rf ~/tenqmemo/node_modules
-    - |
-      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
-        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
-      fi
-  override:
-    - yarn install && bundle install
-  cache_directories:
-    - ~/.yarn
-    - ~/.cache/yarn
-test:
-  override:
-    - yarn test && rails test
-general:
-  artifacts:
-    - "log/test.log"
+version: 2.0
+jobs:
+  build:
+    working_directory: ~/tenqmemo
+    docker:
+      - image: talktome/tenqmemo:latest
+      - image: postgres:9.6.2
+        environment:
+          POSTGRES_PASSWORD: ''
+          POSTGRES_USER: postgres
+          POSTGRES_DB: tenqmemo_test
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: test
+      RACK_ENV: test
+      YARN_VERSION: 0.21.3
+    steps:
+      - checkout
+      - run:
+          name: env
+          command: env | sort
+      - restore_cache:
+          keys:
+            - gemfile-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: bundle install
+          command: bundle install --path vendor/bundle
+      - save_cache:
+          key: gemfile-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: npm install
+          command: npm install
+      - run:
+          name: create database
+          command: bundle exec rails db:create db:schema:load --trace
+      - run:
+          name: migration database
+          command: bundle exec rails db:migrate
+      - run:
+          name: test
+          command: bundle exec rails test
+      - store_artifacts:
+          path: log/test.log
+          destination: test.log
