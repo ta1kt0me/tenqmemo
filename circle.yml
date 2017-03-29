@@ -33,6 +33,9 @@ jobs:
           name: npm install
           command: npm install
       - run:
+          name: npm run build
+          command: npm run build
+      - run:
           name: create database
           command: bundle exec rails db:create db:schema:load --trace
       - run:
