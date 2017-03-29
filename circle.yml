@@ -18,9 +18,6 @@ jobs:
       REDIS_URL: redis://127.0.0.1:6379/0
     steps:
       - checkout
-      - run:
-          name: env
-          command: env | sort
       - restore_cache:
           keys:
             - gemfile-{{ checksum "Gemfile.lock" }}
