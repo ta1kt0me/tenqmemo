@@ -46,8 +46,11 @@ jobs:
           name: migration database
           command: bundle exec rails db:migrate
       - run:
-          name: test
+          name: ruby test
           command: bundle exec rails test
+      - run:
+          name: js test
+          command: npm test
       - store_artifacts:
           path: log/test.log
           destination: test.log
