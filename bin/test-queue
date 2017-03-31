@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+ENV['RAILS_ENV'] ||= 'test'
+
+require File.expand_path('../../config/environment', __FILE__)
+require 'test_queue'
+require 'test_queue/runner/minitest'
+require 'minitest/reporters'
+
+class TenqmemoMiniTestRunner < TestQueue::Runner::MiniTest
+  def after_fork(num)
+    ActiveRecord::Base.configurations['test']['database'] << num.to_s
+    ActiveRecord::Base.establish_connection(:test)
+
+    report_path = ENV['CI'].nil? ? "tmp/test_reports/#{num}" : "#{ENV['CIRCLE_TEST_REPORTS']}/test_reports/#{num}"
+    Rails.logger.error report_path
+
+    Minitest::Reporters.use!(
+      [
+        Minitest::Reporters::SpecReporter.new
+      ]
+    )
+  end
+end
+
+TenqmemoMiniTestRunner.new.execute

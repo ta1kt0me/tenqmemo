@@ -41,13 +41,10 @@ jobs:
           command: npm run build
       - run:
           name: create database
-          command: bundle exec rails db:create db:schema:load --trace
-      - run:
-          name: migration database
-          command: bundle exec rails db:migrate
+          command: bundle exec rails test_queue:setup --trace
       - run:
           name: ruby test
-          command: bundle exec rails test
+          command: bin/test-queue test/**/*_test.rb
       - run:
           name: js test
           command: npm test
