@@ -1,4 +1,4 @@
-require 'test_helper'
+require './test/test_helper'
 
 class CanAccessHomeTest < Capybara::Rails::TestCase
   test 'title' do

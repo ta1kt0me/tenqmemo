@@ -1,4 +1,4 @@
-require 'test_helper'
+require './test/test_helper'
 
 class NotesControllerTest < ActionDispatch::IntegrationTest
   test 'should get index' do
