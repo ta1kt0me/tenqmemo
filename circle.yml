@@ -1,7 +1,7 @@
 version: 2.0
 jobs:
   build:
-    working_directory: ~/tenqmemo
+    working_directory: /root/tenqmemo
     docker:
       - image: talktome/tenqmemo:latest
       - image: redis:3.0.7-alpine
@@ -24,7 +24,7 @@ jobs:
             - packagejson-{{ checksum "package.json" }}
       - run:
           name: bundle install
-          command: bundle install --path vendor/bundle
+          command: bundle install --path vendor/bundle -j 36
       - save_cache:
           key: gemfile-{{ checksum "Gemfile.lock" }}
           paths:
@@ -51,6 +51,8 @@ jobs:
       - run:
           name: js test
           command: npm test
+      - store_test_results:
+          path: tmp/test_reports
       - store_artifacts:
           path: log/test.log
           destination: test.log
