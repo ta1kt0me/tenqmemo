@@ -2,9 +2,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/stub_any_instance'
-require 'support/login_helper'
+require File.expand_path('test/support/login_helper')
 require 'minitest/rails/capybara'
 require 'capybara/poltergeist'
+require 'minitest/reporters'
 
 module ActiveSupport
   class TestCase
@@ -19,5 +20,14 @@ module ActiveSupport
       Rack::Handler::Puma.run(app, Host: host, Port: port, Threads: "0:4", Silent: true)
     end
     Capybara.server = :puma
+
+    reports_path = ENV['CI'].nil? ? "tmp/test_reports" : "#{ENV['CIRCLE_TEST_REPORTS']}/test_reports"
+
+    Minitest::Reporters.use!(
+      [
+        Minitest::Reporters::JUnitReporter.new(reports_path, false),
+        Minitest::Reporters::SpecReporter.new
+      ]
+    )
   end
 end
