@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -5,8 +6,8 @@ import { WithContext as ReactTags } from 'react-tag-input';
 export class Renderer extends React.Component {
   static get propTypes() {
     return {
-      tags: React.PropTypes.array,
-      suggestions: React.PropTypes.array,
+      tags: PropTypes.array,
+      suggestions: PropTypes.array,
     };
   }
 
