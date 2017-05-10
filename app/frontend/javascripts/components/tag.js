@@ -30,7 +30,7 @@ export class Renderer extends React.Component {
   handleAddition(tag) {
     const tags = this.state.tags;
     if (tags.map((x) => x.text).indexOf(tag) < 0) {
-      tags.push({ text: tag });
+      tags.push({ text: tag, id: tags.length - 1 });
     }
     this.setState({ tags });
   }

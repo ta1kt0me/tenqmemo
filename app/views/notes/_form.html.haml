@@ -25,6 +25,6 @@
       .form-group
         = f.submit 'Save', class: 'btn btn-primary'
 :javascript
-  Tag(#{@note.tags.map { |tag| { text: tag.name } }.to_json}, #{@suggestions.to_json});
+  Tag(#{@note.tags.map.with_index { |tag, i| { text: tag.name, id: i } }.to_json}, #{@suggestions.to_json});
   Editor(#{@note.to_json});
   window.Markdown = Preview(#{@note.to_json});
