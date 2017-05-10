@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types'
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export class Renderer extends React.Component {
   static get propTypes() {
     return {
-      body: React.PropTypes.string,
+      body: PropTypes.string,
     };
   }
 
