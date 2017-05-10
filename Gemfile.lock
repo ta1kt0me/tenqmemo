@@ -255,8 +255,8 @@ DEPENDENCIES
   jquery-rails
   kaminari!
   listen (>= 3.0.5, < 3.2)
-  minitest-rails (~> 3.0.0.rc1)
-  minitest-rails-capybara (~> 3.0.0.rc1)
+  minitest-rails (~> 3.0.0)
+  minitest-rails-capybara (~> 3.0.0)
   minitest-reporters
   minitest-stub_any_instance
   pg (~> 0.18)

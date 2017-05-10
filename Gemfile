@@ -56,8 +56,8 @@ group :development do
 end
 
 group :test do
-  gem 'minitest-rails', '~> 3.0.0.rc1'
-  gem 'minitest-rails-capybara', '~> 3.0.0.rc1'
+  gem 'minitest-rails', '~> 3.0.0'
+  gem 'minitest-rails-capybara', '~> 3.0.0'
   gem 'minitest-reporters'
   gem 'minitest-stub_any_instance'
   gem 'poltergeist'
