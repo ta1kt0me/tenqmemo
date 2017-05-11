@@ -1,16 +1,6 @@
 require 'application_system_test_case'
 
-class CanCreateNoteTest < Capybara::Rails::TestCase
-  def setup
-    Capybara.current_driver = Capybara.javascript_driver
-    super
-  end
-
-  def teardown
-    super
-    Capybara.use_default_driver
-  end
-
+class CanCreateNoteTest < ApplicationSystemTestCase
   test 'create note' do
     body = 'new note'
 
