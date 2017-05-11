@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'application_system_test_case'
 
-class CanAccessHomeTest < Capybara::Rails::TestCase
+class CanAccessNotesFromTagTest < ApplicationSystemTestCase
   test 'click a tag link' do
     visit root_path
     click_link 'pop music'
