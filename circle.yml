@@ -20,13 +20,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - gemfile-{{ checksum "Gemfile.lock" }}
+            - gemfile-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - npm-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: bundle install
           command: bundle install --path vendor/bundle -j 36
       - save_cache:
-          key: gemfile-{{ checksum "Gemfile.lock" }}
+          key: gemfile-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
