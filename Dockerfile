@@ -27,7 +27,8 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
-RUN curl -SL https://www.npmjs.com/install.sh | npm_install=4.4.4 sh
+ENV YARN_VERSION 0.23.4
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
 
 ENV PHANTOMJS_VERSION 2.1.1
 RUN mkdir /tmp/phantomjs \

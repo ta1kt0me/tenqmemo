@@ -20,25 +20,25 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - gemfile-{{ checksum "Gemfile.lock" }}
-            - packagejson-{{ checksum "package.json" }}
+            - gemfile-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - npm-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: bundle install
           command: bundle install --path vendor/bundle -j 36
       - save_cache:
-          key: gemfile-{{ checksum "Gemfile.lock" }}
+          key: gemfile-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
-          name: npm install
-          command: npm install
+          name: yarn install
+          command: /root/.yarn/bin/yarn install
       - save_cache:
-          key: packagejson-{{ checksum "package.json" }}
+          key: npm-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - run:
-          name: npm run build
-          command: npm run build
+          name: yarn run build
+          command: /root/.yarn/bin/yarn run build
       - run:
           name: create database
           command: bundle exec rails db:create db:schema:load --trace
@@ -50,7 +50,7 @@ jobs:
           command: bundle exec rails test
       - run:
           name: js test
-          command: npm test
+          command: /root/.yarn/bin/yarn test
       - store_test_results:
           path: tmp/test_reports
       - store_artifacts:
