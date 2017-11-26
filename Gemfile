@@ -56,9 +56,11 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 2.13'
+  gem "chromedriver-helper"
   gem 'minitest-reporters'
   gem 'minitest-stub_any_instance'
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
 end
 
 gem 'dotenv-rails'
