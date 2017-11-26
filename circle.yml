@@ -46,8 +46,11 @@ jobs:
           name: migration database
           command: bundle exec rails db:migrate
       - run:
-          name: ruby test
+          name: unit test
           command: bundle exec rails test
+      - run:
+          name: system test
+          command: bundle exec rails test:system
       - run:
           name: js test
           command: /root/.yarn/bin/yarn test

@@ -1,4 +1,4 @@
-FROM ruby:2.4.1
+FROM ruby:2.4.2
 RUN set -ex \
   && for key in \
     9554F04D7259F04124DE6B476D5A82AC7E37093B \
@@ -19,7 +19,7 @@ RUN apt-get update -y -q \
   libxslt-dev \
   libpq-dev
 
-ENV NODE_VERSION 6.10.1
+ENV NODE_VERSION 6.11.3
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
   && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
   && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
@@ -27,7 +27,7 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
-ENV YARN_VERSION 0.23.4
+ENV YARN_VERSION 1.3.2
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
 
 ENV PHANTOMJS_VERSION 2.1.1
