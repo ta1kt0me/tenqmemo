@@ -9,6 +9,8 @@ class CanCreateNoteTest < ApplicationSystemTestCase
       find('.tag-input-field').set('mytag')
       find('.tag-input-field').native.send_keys(:return)
       fill_in 'note_body', with: body
+      # Ensure to display preview
+      find('#note_body').native.send_keys(:return)
 
       within '.preview' do
         assert_content page, body

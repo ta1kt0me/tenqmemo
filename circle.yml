@@ -1,7 +1,7 @@
 version: 2.0
 jobs:
   build:
-    working_directory: /root/tenqmemo
+    working_directory: ~/tenqmemo
     docker:
       - image: talktome/tenqmemo:latest
       - image: redis:3.0.7-alpine
@@ -20,25 +20,29 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - gemfile-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - npm-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - gemfile-2.4-{{ .Branch }}-
+            - gemfile-2.4-master
+      - restore_cache:
+          keys:
+            - npm-3.10-{{ .Branch }}-
+            - npm-3.10-master
       - run:
           name: bundle install
           command: bundle install --path vendor/bundle -j 36
       - save_cache:
-          key: gemfile-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: gemfile-2.4-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
           name: yarn install
-          command: /root/.yarn/bin/yarn install
+          command: yarn install
       - save_cache:
-          key: npm-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: npm-3.10-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - run:
           name: yarn run build
-          command: /root/.yarn/bin/yarn run build
+          command: yarn run build
       - run:
           name: create database
           command: bundle exec rails db:create db:schema:load --trace
@@ -53,7 +57,7 @@ jobs:
           command: bundle exec rails test:system
       - run:
           name: js test
-          command: /root/.yarn/bin/yarn test
+          command: yarn test
       - store_test_results:
           path: tmp/test_reports
       - store_artifacts:
