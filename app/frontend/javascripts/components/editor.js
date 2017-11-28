@@ -17,17 +17,25 @@ export class Textarea extends React.Component {
     App.note.preview(event.target.value);
   }
 
+  handleDrop(event) {
+    console.log(event);
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <textarea
-        rows="35"
-        className="form-control"
-        data-behavior="writer"
-        name="note[body]"
-        id="note_body"
-        onChange={this.handleChange}
-        defaultValue={this.props.body}
-      ></textarea>
+      <div onDrop={this.handleDrop}>
+        <textarea
+          rows="35"
+          className="form-control"
+          data-behavior="writer"
+          name="note[body]"
+          id="note_body"
+          onChange={this.handleChange}
+          defaultValue={this.props.body}
+        ></textarea>
+      </div>
     );
   }
 }
