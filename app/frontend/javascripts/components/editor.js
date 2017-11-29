@@ -18,22 +18,32 @@ export class Textarea extends React.Component {
   }
 
   handleDrop(event) {
+    // TODO: loading
     const form = new FormData();
     Array.from(event.dataTransfer.files).forEach((f) => {
-      form.append('files[]', f, `${Date.now()}_${f.name}`);
+      form.append('upload_image[files][]', f, `${Date.now()}_${f.name}`);
     });
-    $.ajax('/images', {
-      method: 'post',
+
+    Rails.ajax({
+      type: 'POST',
+      url: '/upload_images',
+      dataType: 'json',
       data: form,
-      processData: false,
-      success: (data, status, xhr) => {
-        console.log("success")
+      success: (filenames) => {
+        // TODO: replace value with url
+        filenames.forEach((filename) => {
+          console.log(filename);
+        });
+        console.log('success');
       },
-      error: (xhr, status, error) => {
-        console.log("error")
+      error: (error) => {
+        // TODO: replace value with error message
+        console.log(error);
+        console.log('error');
       },
-      complete: (xhr, status) => {
-        console.log("complete")
+      complete: (xhr) => {
+        console.log(xhr);
+        console.log('complete');
       },
     });
     event.stopPropagation();
