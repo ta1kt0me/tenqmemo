@@ -9,12 +9,22 @@ export class Textarea extends React.Component {
     };
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: this.props.body,
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
   componentDidMount() {
-    App.note.preview(document.getElementById('note_body').value);
+    App.note.preview(this.state.body);
   }
 
   handleChange(event) {
-    App.note.preview(event.target.value);
+    this.setState({ body: event.target.value });
+    App.note.preview(this.state.body);
   }
 
   handleDrop(event) {
