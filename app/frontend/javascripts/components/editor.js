@@ -12,48 +12,59 @@ export class Textarea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: this.props.body,
+      body: this.props.body ? this.props.body : '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateBody = this.updateBody.bind(this);
   }
 
   componentDidMount() {
     App.note.preview(this.state.body);
   }
 
-  handleChange(event) {
-    this.setState({ body: event.target.value });
+  updateBody(body) {
+    this.setState({ body });
     App.note.preview(this.state.body);
+  }
+
+  handleChange(event) {
+    this.updateBody(event.target.value);
   }
 
   handleDrop(event) {
     // TODO: loading
     const form = new FormData();
-    Array.from(event.dataTransfer.files).forEach((f) => {
-      form.append('upload_image[files][]', f, `${Date.now()}_${f.name}`);
-    });
+    const uploadFiles = Array.from(event.dataTransfer.files);
+    const progressText = uploadFiles.map((f) => {
+      const filename = `${Date.now()}_${f.name}`;
+      form.append('upload_image[files][]', f, filename);
+      return filename;
+    }).map((name) => `![${name}](uploading...)`).join(`\n`);
+
+    const progressBody = this.state.body.concat(`\n${progressText}`);
+    this.updateBody(progressBody);
 
     Rails.ajax({
       type: 'POST',
       url: '/upload_images',
       dataType: 'json',
       data: form,
-      success: (filenames) => {
-        // TODO: replace value with url
-        filenames.forEach((filename) => {
-          console.log(filename);
+      success: (files) => {
+        let body = this.state.body;
+        files.forEach((file) => {
+          body = body.replace(
+            `![${file.name}](uploading...)`,
+            `![${file.name}](${file.url})`
+          );
         });
-        console.log('success');
+        this.updateBody(body);
       },
       error: (error) => {
         // TODO: replace value with error message
         console.log(error);
         console.log('error');
-      },
-      complete: (xhr) => {
-        console.log(xhr);
-        console.log('complete');
       },
     });
     event.stopPropagation();
@@ -70,7 +81,7 @@ export class Textarea extends React.Component {
           name="note[body]"
           id="note_body"
           onChange={this.handleChange}
-          defaultValue={this.props.body}
+          value={this.state.body}
         ></textarea>
       </div>
     );
