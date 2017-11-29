@@ -18,7 +18,24 @@ export class Textarea extends React.Component {
   }
 
   handleDrop(event) {
-    console.log(event);
+    const form = new FormData();
+    Array.from(event.dataTransfer.files).forEach((f) => {
+      form.append('files[]', f, `${Date.now()}_${f.name}`);
+    });
+    $.ajax('/images', {
+      method: 'post',
+      data: form,
+      processData: false,
+      success: (data, status, xhr) => {
+        console.log("success")
+      },
+      error: (xhr, status, error) => {
+        console.log("error")
+      },
+      complete: (xhr, status) => {
+        console.log("complete")
+      },
+    });
     event.stopPropagation();
     event.preventDefault();
   }
