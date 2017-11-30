@@ -18,6 +18,9 @@ export class Textarea extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateBody = this.updateBody.bind(this);
+    this.handleDropSuccess = this.handleDropSuccess.bind(this);
+    this.handleDropError = this.handleDropError.bind(this);
+    this.handleDropBeforeSend = this.handleDropBeforeSend.bind(this);
   }
 
   componentDidMount() {
@@ -33,16 +36,41 @@ export class Textarea extends React.Component {
     this.updateBody(event.target.value);
   }
 
+  progressText() {
+    return '![uploading...]()';
+  }
+
+  handleDropBeforeSend(files) {
+    const progressBody = new Array(files.length).fill(this.progressText()).join(`\n`);
+    this.updateBody(this.state.body.concat(`\n${progressBody}`));
+  }
+
+  handleDropSuccess(data) {
+    let body = this.state.body;
+    body = body.replace(
+      this.progressText(),
+      `![${data.name}](${data.url})`
+    );
+    this.updateBody(body);
+  }
+
+  handleDropError(error) {
+    let body = this.state.body;
+    body = body.replace(
+      this.progressText(),
+      `Fail uploading file because ${error} :-(`
+    );
+    this.updateBody(body);
+  }
+
   handleDrop(event) {
     event.stopPropagation();
     event.preventDefault();
 
-    const progressText = '![uploading...]()';
-    const uploadFiles = Array.from(event.dataTransfer.files);
-    const progressBody = new Array(uploadFiles.length).fill(progressText).join(`\n`);
-    this.updateBody(this.state.body.concat(`\n${progressBody}`));
+    const files = Array.from(event.dataTransfer.files);
+    this.handleDropBeforeSend(files);
 
-    uploadFiles.forEach((file) => {
+    files.forEach((file) => {
       const filename = `${Date.now()}_${file.name}`;
       const form = new FormData();
       form.append('upload_image[file]', file, filename);
@@ -52,22 +80,8 @@ export class Textarea extends React.Component {
         url: '/upload_images',
         dataType: 'json',
         data: form,
-        success: (uploadedFile) => {
-          let body = this.state.body;
-          body = body.replace(
-            progressText,
-            `![${uploadedFile.name}](${uploadedFile.url})`
-          );
-          this.updateBody(body);
-        },
-        error: (error) => {
-          let body = this.state.body;
-          body = body.replace(
-            progressText,
-            `Fail uploading file because ${error} :-(`
-          );
-          this.updateBody(body);
-        },
+        success: this.handleDropSuccess,
+        error: this.handleDropError,
       });
     });
   }
