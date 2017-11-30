@@ -34,6 +34,9 @@ export class Textarea extends React.Component {
   }
 
   handleDrop(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
     const progressText = '![uploading...]()';
     const uploadFiles = Array.from(event.dataTransfer.files);
     const progressBody = new Array(uploadFiles.length).fill(progressText).join(`\n`);
@@ -66,8 +69,6 @@ export class Textarea extends React.Component {
           this.updateBody(body);
         },
       });
-      event.stopPropagation();
-      event.preventDefault();
     });
   }
 
