@@ -34,11 +34,10 @@ export class Textarea extends React.Component {
   }
 
   handleDrop(event) {
-    // TODO: loading
+    const progressText = '![uploading...]()';
     const uploadFiles = Array.from(event.dataTransfer.files);
-    const progressText = new Array(uploadFiles.length).fill('![uploading...]()').join(`\n`);
-    const progressBody = this.state.body.concat(`\n${progressText}`);
-    this.updateBody(progressBody);
+    const progressBody = new Array(uploadFiles.length).fill(progressText).join(`\n`);
+    this.updateBody(this.state.body.concat(`\n${progressBody}`));
 
     uploadFiles.forEach((file) => {
       const filename = `${Date.now()}_${file.name}`;
@@ -53,7 +52,7 @@ export class Textarea extends React.Component {
         success: (uploadedFile) => {
           let body = this.state.body;
           body = body.replace(
-            '![uploading...]()',
+            progressText,
             `![${uploadedFile.name}](${uploadedFile.url})`
           );
           this.updateBody(body);
@@ -61,7 +60,7 @@ export class Textarea extends React.Component {
         error: (error) => {
           let body = this.state.body;
           body = body.replace(
-            '![uploading...]()',
+            progressText,
             `Fail uploading file because ${error} :-(`
           );
           this.updateBody(body);
