@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import UploadImageOnDrop from './uploadImageOnDrop';
 
 export class Textarea extends React.Component {
   static get propTypes() {
@@ -15,7 +16,6 @@ export class Textarea extends React.Component {
       body: this.props.body ? this.props.body : '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.handleDropSuccess = this.handleDropSuccess.bind(this);
@@ -63,32 +63,13 @@ export class Textarea extends React.Component {
     this.updateBody(body);
   }
 
-  handleDrop(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
-    const files = Array.from(event.dataTransfer.files);
-    this.handleDropBeforeSend(files);
-
-    files.forEach((file) => {
-      const filename = `${Date.now()}_${file.name}`;
-      const form = new FormData();
-      form.append('upload_image[file]', file, filename);
-
-      Rails.ajax({
-        type: 'POST',
-        url: '/upload_images',
-        dataType: 'json',
-        data: form,
-        success: this.handleDropSuccess,
-        error: this.handleDropError,
-      });
-    });
-  }
-
   render() {
     return (
-      <div onDrop={this.handleDrop}>
+      <UploadImageOnDrop
+        success={this.handleDropSuccess}
+        error={this.handleDropError}
+        beforeSend={this.handleDropBeforeSend}
+      >
         <textarea
           rows="35"
           className="form-control"
@@ -98,7 +79,7 @@ export class Textarea extends React.Component {
           onChange={this.handleChange}
           value={this.state.body}
         ></textarea>
-      </div>
+      </UploadImageOnDrop>
     );
   }
 }
