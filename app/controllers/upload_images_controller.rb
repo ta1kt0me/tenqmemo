@@ -6,13 +6,12 @@ class UploadImagesController < ApplicationController
   def create
     # TODO: Upload file
     @upload_image = upload_image_params
-    filenames = @upload_image[:files].map(&:original_filename).map do |filename|
-      { name: filename, url: "http://example.com/#{filename}" }
-    end
+    filename = @upload_image[:file].original_filename
+    file = { name: filename, url: "http://example.com/#{filename}" }
 
     respond_to do |format|
       if true
-        format.json { render json: filenames }
+        format.json { render json: file }
       else
         format.json { render json: ['error'], status: :unprocessable_entity }
       end
@@ -22,6 +21,6 @@ class UploadImagesController < ApplicationController
   private
 
   def upload_image_params
-    params.require(:upload_image).permit(files: [])
+    params.require(:upload_image).permit(:file)
   end
 end

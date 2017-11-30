@@ -35,40 +35,41 @@ export class Textarea extends React.Component {
 
   handleDrop(event) {
     // TODO: loading
-    const form = new FormData();
     const uploadFiles = Array.from(event.dataTransfer.files);
-    const progressText = uploadFiles.map((f) => {
-      const filename = `${Date.now()}_${f.name}`;
-      form.append('upload_image[files][]', f, filename);
-      return filename;
-    }).map((name) => `![${name}](uploading...)`).join(`\n`);
-
+    const progressText = new Array(uploadFiles.length).fill('![uploading...]()').join(`\n`);
     const progressBody = this.state.body.concat(`\n${progressText}`);
     this.updateBody(progressBody);
 
-    Rails.ajax({
-      type: 'POST',
-      url: '/upload_images',
-      dataType: 'json',
-      data: form,
-      success: (files) => {
-        let body = this.state.body;
-        files.forEach((file) => {
+    uploadFiles.forEach((file) => {
+      const filename = `${Date.now()}_${file.name}`;
+      const form = new FormData();
+      form.append('upload_image[file]', file, filename);
+
+      Rails.ajax({
+        type: 'POST',
+        url: '/upload_images',
+        dataType: 'json',
+        data: form,
+        success: (uploadedFile) => {
+          let body = this.state.body;
           body = body.replace(
-            `![${file.name}](uploading...)`,
-            `![${file.name}](${file.url})`
+            '![uploading...]()',
+            `![${uploadedFile.name}](${uploadedFile.url})`
           );
-        });
-        this.updateBody(body);
-      },
-      error: (error) => {
-        // TODO: replace value with error message
-        console.log(error);
-        console.log('error');
-      },
+          this.updateBody(body);
+        },
+        error: (error) => {
+          let body = this.state.body;
+          body = body.replace(
+            '![uploading...]()',
+            `Fail uploading file because ${error} :-(`
+          );
+          this.updateBody(body);
+        },
+      });
+      event.stopPropagation();
+      event.preventDefault();
     });
-    event.stopPropagation();
-    event.preventDefault();
   }
 
   render() {
