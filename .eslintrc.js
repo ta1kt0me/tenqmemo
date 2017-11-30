@@ -5,7 +5,8 @@ module.exports = {
     es6: true
   },
   globals: {
-    App: true
+    App: true,
+    Rails: true
   },
   rules : {
     'react/no-multi-comp': 0,
