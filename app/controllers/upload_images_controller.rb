@@ -4,16 +4,21 @@ class UploadImagesController < ApplicationController
   before_action :logged_in?
 
   def create
-    # TODO: Upload file
-    @upload_image = upload_image_params
-    filename = @upload_image[:file].original_filename
-    file = { name: filename, url: "http://example.com/#{filename}" }
-
     respond_to do |format|
-      if true
+      @upload_image = upload_image_params
+      begin
+        res = Cloudinary::Uploader.upload(
+          @upload_image[:file],
+          crop: "limit",
+          tags: "tenqmemo",
+          resource_type: :auto,
+          folder: "tenqmemo",
+          use_filename: true
+        )
+        file = { name: @upload_image[:file].original_filename, url: res["secure_url"] }
         format.json { render json: file }
-      else
-        format.json { render json: ['error'], status: :unprocessable_entity }
+      rescue CloudinaryException => e
+        format.json { render json: e.messsge, status: :unprocessable_entity }
       end
     end
   end
