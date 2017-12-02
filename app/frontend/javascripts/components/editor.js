@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import UploadImageOnDrop from './uploadImageOnDrop';
 
 export class Textarea extends React.Component {
   static get propTypes() {
@@ -9,25 +10,76 @@ export class Textarea extends React.Component {
     };
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: this.props.body ? this.props.body : '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateBody = this.updateBody.bind(this);
+    this.handleDropSuccess = this.handleDropSuccess.bind(this);
+    this.handleDropError = this.handleDropError.bind(this);
+    this.handleDropBeforeSend = this.handleDropBeforeSend.bind(this);
+  }
+
   componentDidMount() {
-    App.note.preview(document.getElementById('note_body').value);
+    App.note.preview(this.state.body);
+  }
+
+  updateBody(body) {
+    this.setState({ body });
+    App.note.preview(this.state.body);
   }
 
   handleChange(event) {
-    App.note.preview(event.target.value);
+    this.updateBody(event.target.value);
+  }
+
+  progressText() {
+    return '![uploading...]()';
+  }
+
+  handleDropBeforeSend(files) {
+    const progressBody = new Array(files.length).fill(this.progressText()).join(`\n`);
+    this.updateBody(this.state.body.concat(`\n${progressBody}`));
+  }
+
+  handleDropSuccess(data) {
+    let body = this.state.body;
+    body = body.replace(
+      this.progressText(),
+      `![${data.name}](${data.url})`
+    );
+    this.updateBody(body);
+  }
+
+  handleDropError(error) {
+    let body = this.state.body;
+    body = body.replace(
+      this.progressText(),
+      `Fail uploading file because ${error} :-(`
+    );
+    this.updateBody(body);
   }
 
   render() {
     return (
-      <textarea
-        rows="35"
-        className="form-control"
-        data-behavior="writer"
-        name="note[body]"
-        id="note_body"
-        onChange={this.handleChange}
-        defaultValue={this.props.body}
-      ></textarea>
+      <UploadImageOnDrop
+        success={this.handleDropSuccess}
+        error={this.handleDropError}
+        beforeSend={this.handleDropBeforeSend}
+      >
+        <textarea
+          rows="35"
+          className="form-control"
+          data-behavior="writer"
+          name="note[body]"
+          id="note_body"
+          onChange={this.handleChange}
+          value={this.state.body}
+        ></textarea>
+      </UploadImageOnDrop>
     );
   }
 }
