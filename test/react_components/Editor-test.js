@@ -28,7 +28,7 @@ describe('Editor', () => {
 
   it('has Editor component', () => {
     const obj = { body: 'foo' };
-    document = new JSDOM('<!doctype html><html><body><div id="editor"></div></body></html>').window.document;
+    global.document = new JSDOM('<!doctype html><html><body><div id="editor"></div></body></html>').window.document;
     Editor(obj);
     assert(document.querySelector('#editor textarea').innerHTML === obj.body);
   });

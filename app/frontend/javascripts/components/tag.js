@@ -22,13 +22,13 @@ export class Renderer extends React.Component {
   }
 
   handleDelete(i) {
-    const tags = this.state.tags;
+    const { tags } = this.state;
     tags.splice(i, 1);
     this.setState({ tags });
   }
 
   handleAddition(tag) {
-    const tags = this.state.tags;
+    const { tags } = this.state;
     if (tags.map(x => x.text).indexOf(tag) < 0) {
       tags.push({ text: tag, id: tags.length - 1 });
     }
