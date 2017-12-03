@@ -25,10 +25,10 @@ export class Renderer extends React.Component {
       <div
         className="preview"
         dangerouslySetInnerHTML={{ __html: this.state.body }}
-      ></div>
+      />
     );
   }
 }
 
-export const Preview = (post) =>
+export const Preview = post =>
   ReactDOM.render(<Renderer body={post.body} />, document.getElementById('preview'));
