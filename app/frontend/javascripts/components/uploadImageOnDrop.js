@@ -4,7 +4,7 @@ import React from 'react';
 export default class UpLoadImageOnDrop extends React.Component {
   static get propTypes() {
     return {
-      children: PropTypes.node,
+      children: PropTypes.node.isRequired,
       beforeSend: PropTypes.func.isRequired,
       success: PropTypes.func.isRequired,
       error: PropTypes.func.isRequired,

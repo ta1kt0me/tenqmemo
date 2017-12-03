@@ -10,6 +10,10 @@ export class Textarea extends React.Component {
     };
   }
 
+  static progressText() {
+    return '![uploading...]()';
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,29 +40,25 @@ export class Textarea extends React.Component {
     this.updateBody(event.target.value);
   }
 
-  progressText() {
-    return '![uploading...]()';
-  }
-
   handleDropBeforeSend(files) {
-    const progressBody = new Array(files.length).fill(this.progressText()).join(`\n`);
+    const progressBody = new Array(files.length).fill(Textarea.progressText()).join('\n');
     this.updateBody(this.state.body.concat(`\n${progressBody}`));
   }
 
   handleDropSuccess(data) {
-    let body = this.state.body;
+    let { body } = this.state;
     body = body.replace(
-      this.progressText(),
-      `![${data.name}](${data.url})`
+      Textarea.progressText(),
+      `![${data.name}](${data.url})`,
     );
     this.updateBody(body);
   }
 
   handleDropError(error) {
-    let body = this.state.body;
+    let { body } = this.state;
     body = body.replace(
-      this.progressText(),
-      `Fail uploading file because ${error} :-(`
+      Textarea.progressText(),
+      `Fail uploading file because ${error} :-(`,
     );
     this.updateBody(body);
   }
@@ -78,7 +78,7 @@ export class Textarea extends React.Component {
           id="note_body"
           onChange={this.handleChange}
           value={this.state.body}
-        ></textarea>
+        />
       </UploadImageOnDrop>
     );
   }

@@ -8,6 +8,7 @@
   "scripts": {
     "test": "mocha test/react_components",
     "build": "webpack --progress --profile --colors",
+    "lint": "eslint app/assets/javascripts/channels/ app/frontend/javascripts/ test/react_components/",
     "postinstall": "npm run build"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "escape-string-regexp": "^1.0.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "node-sass": "^4.5.0",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-tag-input": "^4.6.1",
@@ -42,11 +44,11 @@
     "babel-preset-power-assert": "^1.0.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "eslint": "^2.11.1",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.8.1",
-    "eslint-plugin-jsx-a11y": "^1.3.0",
-    "eslint-plugin-react": "^5.1.1",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
     "jsdom": "^11.5.1",
     "mocha": "^4.0.1",
     "mocha-junit-reporter": "^1.13.0",
