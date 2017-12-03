@@ -1,5 +1,3 @@
 --require babel-core/register
 --require test/setup.js
 --recursive
---reporter mocha-junit-reporter
---reporter-options mochaFile=tmp/test_reports/mocha/result.xml
