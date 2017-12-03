@@ -57,7 +57,7 @@ jobs:
           command: bundle exec rails test:system
       - run:
           name: js test
-          command: yarn test
+          command: yarn test ---reporter mocha-junit-reporter ---reporter-options mochaFile=tmp/test_reports/mocha/result.xml
       - store_test_results:
           path: tmp/test_reports
       - store_artifacts:
