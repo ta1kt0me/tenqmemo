@@ -1,8 +1,9 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+import { Renderer, Preview } from '../../app/frontend/javascripts/components/preview';
+
 const assert = require('assert');
 const { JSDOM } = require('jsdom');
-
-import { shallow } from 'enzyme';
-import { Renderer, Preview } from '../../app/frontend/javascripts/components/preview.js';
 
 describe('Renderer', () => {
   it('has preview class', () => {

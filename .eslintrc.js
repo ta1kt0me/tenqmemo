@@ -12,6 +12,7 @@ module.exports = {
   rules : {
     'react/no-multi-comp': 0,
     'max-len': [0, 250],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   },
   plugins: [
     'react'
