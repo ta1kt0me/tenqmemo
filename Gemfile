@@ -37,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'gemoji'
 gem 'hamlit'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari.git'
+gem 'piet'
+gem 'piet-binary'
 gem 'redcarpet'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
