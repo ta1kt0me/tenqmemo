@@ -6,8 +6,12 @@ import UploadImageOnDrop from './uploadImageOnDrop';
 export class Textarea extends React.Component {
   static get propTypes() {
     return {
-      body: PropTypes.string,
+      body: PropTypes.string.isRequired,
     };
+  }
+
+  static progressText() {
+    return '![uploading...]()';
   }
 
   constructor(props) {
@@ -36,28 +40,24 @@ export class Textarea extends React.Component {
     this.updateBody(event.target.value);
   }
 
-  progressText() {
-    return '![uploading...]()';
-  }
-
   handleDropBeforeSend(files) {
-    const progressBody = new Array(files.length).fill(this.progressText()).join('\n');
+    const progressBody = new Array(files.length).fill(Textarea.progressText()).join('\n');
     this.updateBody(this.state.body.concat(`\n${progressBody}`));
   }
 
   handleDropSuccess(data) {
-    let body = this.state.body;
+    let { body } = this.state;
     body = body.replace(
-      this.progressText(),
+      Textarea.progressText(),
       `![${data.name}](${data.url})`,
     );
     this.updateBody(body);
   }
 
   handleDropError(error) {
-    let body = this.state.body;
+    let { body } = this.state;
     body = body.replace(
-      this.progressText(),
+      Textarea.progressText(),
       `Fail uploading file because ${error} :-(`,
     );
     this.updateBody(body);

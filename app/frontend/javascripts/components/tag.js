@@ -6,8 +6,8 @@ import { WithContext as ReactTags } from 'react-tag-input';
 export class Renderer extends React.Component {
   static get propTypes() {
     return {
-      tags: PropTypes.array,
-      suggestions: PropTypes.array,
+      tags: PropTypes.arrayOf.isRequired,
+      suggestions: PropTypes.arrayOf.isRequired,
     };
   }
 
