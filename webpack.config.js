@@ -9,9 +9,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new ExtractTextPlugin(
-     '../stylesheets/bundle.scss'
-    ),
+    new ExtractTextPlugin('../stylesheets/bundle.scss'),
   ],
   module: {
     rules: [
