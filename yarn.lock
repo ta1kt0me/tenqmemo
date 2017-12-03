@@ -4351,7 +4351,7 @@ react-dnd@^2.0.2:
     lodash "^4.2.0"
     prop-types "^15.5.10"
 
-react-dom@^15.5.4:
+react-dom@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.2.tgz#41cfadf693b757faf2708443a1d1fd5a02bef730"
   dependencies:
@@ -4369,7 +4369,7 @@ react-tag-input@^4.6.1:
     react-dnd "^2.0.2"
     react-dnd-html5-backend "^2.0.0"
 
-react-test-renderer@^15.5.4:
+react-test-renderer@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.6.2.tgz#d0333434fc2c438092696ca770da5ed48037efa8"
   dependencies:
@@ -4383,7 +4383,7 @@ react-tools@~0.13.0:
     commoner "^0.10.0"
     jstransform "^10.1.0"
 
-react@^15.5.4:
+react@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
   dependencies:
