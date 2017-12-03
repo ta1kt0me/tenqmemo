@@ -1,8 +1,8 @@
+import { shallow } from 'enzyme';
+import { Textarea, Editor } from '../../app/frontend/javascripts/components/editor';
+
 const assert = require('assert');
 const { JSDOM } = require('jsdom');
-
-import { shallow } from 'enzyme';
-import { Textarea, Editor } from '../../app/frontend/javascripts/components/editor.js';
 
 describe('Textarea', () => {
   before(() => sinon.stub(Textarea.prototype, 'componentDidMount').returns(true));

@@ -7,7 +7,8 @@ module.exports = {
   },
   globals: {
     App: true,
-    Rails: true
+    Rails: true,
+    sinon: true
   },
   rules : {
     'react/no-multi-comp': 0,
