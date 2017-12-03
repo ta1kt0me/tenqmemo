@@ -24,7 +24,7 @@ export class Renderer extends React.Component {
     return (
       <div
         className="preview"
-        dangerouslySetInnerHTML={{ __html: this.state.body }}
+        dangerouslySetInnerHTML={{ __html: this.state.body }} // eslint-disable-line react/no-danger
       />
     );
   }
