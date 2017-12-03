@@ -6,7 +6,7 @@ import UploadImageOnDrop from './uploadImageOnDrop';
 export class Textarea extends React.Component {
   static get propTypes() {
     return {
-      body: PropTypes.string.isRequired,
+      body: PropTypes.string,
     };
   }
 

@@ -1,3 +1,4 @@
+/* eslint func-names: ["error", "never"] */
 (function () {
   App.note = App.cable.subscriptions.create('NoteChannel', {
     connected() {},

@@ -9,7 +9,8 @@ module.exports = {
   globals: {
     App: true,
     Rails: true,
-    sinon: true
+    sinon: true,
+    dataLayer: true
   },
   rules : {
     'react/no-multi-comp': 0,
