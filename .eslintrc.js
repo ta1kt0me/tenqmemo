@@ -16,6 +16,8 @@ module.exports = {
     'react/no-multi-comp': 0,
     'max-len': [0, 250],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/require-default-props": [0, { "forbidDefaultForRequired": true }],
+    "react/no-render-return-value": 0,
   },
   plugins: [
     'react'
