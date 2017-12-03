@@ -1,3 +1,4 @@
+import React from 'react';
 import { shallow } from 'enzyme';
 import { Textarea, Editor } from '../../app/frontend/javascripts/components/editor';
 
