@@ -1,13 +1,13 @@
-global.jsdom = require('jsdom').jsdom;
+const { JSDOM } = require('jsdom');
 
 var exposedProperties = ['window', 'navigator', 'document'];
 
-global.document = jsdom('');
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
+global.document = new JSDOM('');
+global.window = document.window;
+Object.keys(document.window).forEach((property) => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);
-    global[property] = document.defaultView[property];
+    global[property] = document.window[property];
   }
 });
 
