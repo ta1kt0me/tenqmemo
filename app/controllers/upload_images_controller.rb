@@ -7,6 +7,7 @@ class UploadImagesController < ApplicationController
     respond_to do |format|
       @image = upload_image_params.dig :file
       begin
+        Piet.optimize(@image.path, quolity: 50)
         res = Cloudinary::Uploader.upload(
           @image,
           crop: "limit",
