@@ -8,6 +8,7 @@
   "scripts": {
     "test": "mocha test/react_components",
     "build": "webpack --progress --profile --colors",
+    "lint": "eslint app/assets/javascripts/channels/ app/frontend/javascripts/ test/react_components/",
     "postinstall": "npm run build"
   },
   "repository": {
