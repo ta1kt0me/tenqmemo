@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   context: path.join(__dirname, 'app', 'frontend'),
@@ -10,6 +11,11 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('../stylesheets/bundle.scss'),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ecma: 6,
+      },
+    }),
   ],
   module: {
     rules: [
