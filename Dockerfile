@@ -1,4 +1,4 @@
-FROM circleci/ruby:2.4.2-node-browsers
+FROM circleci/ruby:2.5.1-node-browsers
 RUN set -ex \
   && for key in \
     9554F04D7259F04124DE6B476D5A82AC7E37093B \
@@ -19,7 +19,7 @@ RUN sudo apt-get update -y -q \
   libxslt-dev \
   libpq-dev
 
-ENV NODE_VERSION 6.11.3
+ENV NODE_VERSION 8.9.2
 RUN sudo curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
   && sudo curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
   && sudo gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
@@ -27,7 +27,7 @@ RUN sudo curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-l
   && sudo tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && sudo rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
-ENV YARN_VERSION 1.3.2
+ENV YARN_VERSION 1.5.1
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
 
 RUN gem update --system
