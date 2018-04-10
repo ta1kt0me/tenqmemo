@@ -22,7 +22,6 @@ gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'cloudinary'
-gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
