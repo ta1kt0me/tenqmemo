@@ -9,6 +9,13 @@ Things you may want to cover:
 
 * System dependencies
 
+- chromedriver
+
+```
+$ brew tap caskroom/cask
+$ brew install caskroom/cask/chromedriver
+```
+
 * Configuration
 
 * Database creation

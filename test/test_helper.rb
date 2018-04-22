@@ -1,8 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+
+require_relative '../config/environment'
 require 'rails/test_help'
 require 'minitest/stub_any_instance'
-require File.expand_path('test/support/login_helper')
+require_relative './support/login_helper'
 require 'minitest/reporters'
 
 module ActiveSupport

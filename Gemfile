@@ -8,11 +8,11 @@ end
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1.6'
+gem 'rails', '5.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,13 +30,13 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Action Cable dependencies for the Redis adapter
-gem 'redis', '~> 3.0'
+gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'gemoji'
 gem 'hamlit'
-gem 'kaminari', git: 'https://github.com/kaminari/kaminari.git'
+gem 'kaminari'
 gem 'piet'
 gem 'piet-binary'
 gem 'redcarpet'
@@ -59,8 +59,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 2.13'
-  gem "chromedriver-helper"
+  gem 'capybara', '>= 2.15', '< 4.0'
   gem 'minitest-reporters'
   gem 'minitest-stub_any_instance'
   gem 'selenium-webdriver'
