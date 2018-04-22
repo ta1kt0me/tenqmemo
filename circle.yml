@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/tenqmemo
     docker:
       - image: talktome/tenqmemo:latest
-      - image: redis:3.0.7-alpine
+      - image: redis:3.2.11-alpine
       - image: postgres:9.6.2
         environment:
           POSTGRES_PASSWORD: ''
@@ -14,14 +14,14 @@ jobs:
       NODE_ENV: development
       RAILS_ENV: test
       RACK_ENV: test
-      YARN_VERSION: 0.21.3
+      YARN_VERSION: 1.6.0
       REDIS_URL: redis://127.0.0.1:6379/0
     steps:
       - checkout
       - restore_cache:
           keys:
-            - gemfile-2.4-{{ .Branch }}-
-            - gemfile-2.4-master
+            - gemfile-2.5-{{ .Branch }}-
+            - gemfile-2.5-master
       - restore_cache:
           keys:
             - npm-3.10-{{ .Branch }}-
@@ -30,14 +30,14 @@ jobs:
           name: bundle install
           command: bundle install --path vendor/bundle -j 36
       - save_cache:
-          key: gemfile-2.4-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: gemfile-2.5-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
           name: yarn install
           command: yarn install
       - save_cache:
-          key: npm-3.10-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: npm-5.5.1-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - run:
