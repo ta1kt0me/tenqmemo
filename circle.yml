@@ -20,8 +20,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - gemfile-2.4-{{ .Branch }}-
-            - gemfile-2.4-master
+            - gemfile-2.5-{{ .Branch }}-
+            - gemfile-2.5-master
       - restore_cache:
           keys:
             - npm-3.10-{{ .Branch }}-
@@ -30,7 +30,7 @@ jobs:
           name: bundle install
           command: bundle install --path vendor/bundle -j 36
       - save_cache:
-          key: gemfile-2.4-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: gemfile-2.5-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
