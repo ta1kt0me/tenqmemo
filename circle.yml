@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/tenqmemo
     docker:
       - image: talktome/tenqmemo:latest
-      - image: redis:3.0.7-alpine
+      - image: redis:3.2.11-alpine
       - image: postgres:9.6.2
         environment:
           POSTGRES_PASSWORD: ''
